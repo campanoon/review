@@ -7,18 +7,19 @@
 <body>
 <form th:object="${chatForm}" action="#" th:action="@{/chat}" method="post" >
     <label for="username">Username:</label>
-    <input id="username" type="text" th:field="*{chatForm.username}">
+    <input id="username" type="text" th:field="*{username}">
     <label for="messageText">Message Text:</label>
-    <input id="messageText" type="text" th:field="*{chatForm.messageText}">
+    <input id="messageText" type="text" th:field="*{messageText}">
     <label for="messageType">Message Type: </label>
-    <select id="messageType"  th:field="*{chatForm.messageType}">
+    <select id="messageType"  th:field="*{messageType}">
         <option th:each="type : ${allTypes}"
-        th:value="${type}"
-        th:text="#{type}">Say</option>
+                th:value="${type}"
+                th:text="${type}">Say</option>
     </select>
     <input type="submit">
 </form>
 <div th:each="msg : ${messages}">
-    <span th:text="${msg.username}">Username</span>: <span th:text="${msg.message}">Hello, world!</span></div>
+    <span th:text="${msg.username}">Username</span>: <span th:text="${msg.messageText}">Hello, world!</span>
+</div>
 </body>
 </html>
