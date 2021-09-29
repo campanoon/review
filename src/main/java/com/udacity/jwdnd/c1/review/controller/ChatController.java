@@ -17,8 +17,12 @@ public class ChatController {
 
     MessageService messageService;
 
+    public ChatController(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
     @GetMapping()
-    public String getMessages(Model model){
+    public String getMessages(@ModelAttribute("chatForm") ChatForm chatForm, Model model){
         model.addAttribute("messages",messageService.getMessageList().toString());
         return "chat";
     }
@@ -26,12 +30,13 @@ public class ChatController {
     @PostMapping()
     public String postMessage(@ModelAttribute("chatForm") ChatForm chatForm, Model model){
         messageService.addMessage(chatForm);
+        chatForm.setMessageText("");
         model.addAttribute("messages",messageService.getMessageList().toString());
         return "chat";
     }
 
     @ModelAttribute("allTypes")
-    public List<String> populateTypes(){
-        return List.of("Say","Shout", "Whisper");
+    public String[] populateTypes(){
+        return new String[] {"Say","Shout", "Whisper"};
     }
 }

@@ -13,10 +13,6 @@ public class MessageService {
 
     List<ChatMessage> messageList;
 
-    public MessageService(List<ChatMessage> messageList) {
-        this.messageList = messageList;
-    }
-
     @PostConstruct
     public void messageService(){
         System.out.println("Creating MessageService bean");
