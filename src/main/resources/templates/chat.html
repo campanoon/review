@@ -18,7 +18,7 @@
     </select>
     <input type="submit">
 </form>
-<div th:each="msg : ${messages}">
+<div th:each="msg : ${chatMessages}">
     <span th:text="${msg.username}">Username</span>: <span th:text="${msg.messageText}">Hello, world!</span>
 </div>
 </body>
