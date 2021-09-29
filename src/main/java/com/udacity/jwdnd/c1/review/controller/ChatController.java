@@ -16,19 +16,19 @@ public class ChatController {
         this.messageService = messageService;
     }
     @GetMapping
-    public String getChatPage(@ModelAttribute("chatForm") ChatForm chatForm, Model model) {
+    public String getChatPage(ChatForm chatForm, Model model) {
         model.addAttribute("chatMessages", this.messageService.getMessageList());
         return "chat";
     }
     @PostMapping
-    public String postChatMessage(@ModelAttribute("chatForm") ChatForm chatForm, Model model) {
+    public String postChatMessage(ChatForm chatForm, Model model) {
         this.messageService.addMessage(chatForm);
         chatForm.setMessageText("");
         model.addAttribute("chatMessages", this.messageService.getMessageList());
         return "chat";
     }
-    @ModelAttribute("allMessageTypes")
-    public String[] allMessageTypes () {
+    @ModelAttribute("allTypes")
+    public String[] allTypes () {
         return new String[] { "Say", "Shout", "Whisper" };
     }
 }
